@@ -22,9 +22,8 @@
     //
     self.first = YES;
     self.view.backgroundColor = [UIColor whiteColor];
-    self.stackView = [[GDFreeStackView alloc] initWithFrame:CGRectMake(30, 140, 300, 0)];
-//    _stackView.stackLocation = GDFreeStackLocation_bottom;
-    _stackView.backgroundColor = [UIColor lightGrayColor];
+    self.stackView = [[GDFreeStackView alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 100, self.view.frame.size.width, 0)];
+    _stackView.stackLocation = GDFreeStackLocation_bottom;
     _stackView.fadeInOut = YES;
     _stackView.clipsToBounds = YES;
     [self.view addSubview:_stackView];
@@ -35,21 +34,21 @@ static NSInteger count = 4;
     if (self.first) {
         _stackView.views = [self randomViews];
         self.first = NO;
+    } else if (arc4random()%8 == 5) {
+        _stackView.views = @[];
     } else {
         NSArray *oldViews = _stackView.views;
         NSMutableArray *views = [NSMutableArray array];
         // 取几个旧的
-        [views addObject:oldViews.lastObject];
-        while (views.count < count/2) {
-            NSInteger idx = arc4random() % oldViews.count;
-            if (![views containsObject:oldViews[idx]]) {
-                [views addObject:oldViews[idx]];
-            }
+        if (oldViews.count >= 2) {
+            [views addObject:oldViews.firstObject];
         }
         // 插入三个新的
         while (views.count < count + arc4random()%3) {
-            NSInteger idx = arc4random() % views.count;
-            [views insertObject:[self randomView] atIndex:idx];
+            [views addObject:[self randomView]];
+        }
+        if (oldViews.count >= 2) {
+            [views addObject:oldViews.lastObject];
         }
         _stackView.views = views;
     }

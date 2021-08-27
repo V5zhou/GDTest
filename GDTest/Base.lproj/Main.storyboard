@@ -40,7 +40,6 @@
         <scene sceneID="ZZz-Pv-V7V">
             <objects>
                 <navigationController id="aZA-2a-hfF" sceneMemberID="viewController">
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="zdC-6U-zld">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

@@ -28,16 +28,6 @@
     NSAssert([NSSet setWithArray:views].count == views.count, @"数据中存在重复视图，请检查!");
 }
 
-- (void)layoutSubviews {
-    [super layoutSubviews];
-    // 更新子视图宽度
-    for (UIView *view in self.subviews) {
-        CGRect rect = view.frame;
-        rect.size.width = self.frame.size.width;
-        view.frame = rect;
-    }
-}
-
 - (GDFreeStackAnimation *)parsedAnimation {
     if (!_dirty) {
         return _animation;
@@ -61,18 +51,20 @@
         __weak typeof(weakSelf) self = weakSelf;
         // 给新增的元素放到屏幕外
         CGFloat y = CGRectGetHeight(self.frame);
-        for (UIView *view in addSet) {
-            if (self.fadeInOut) {
-                view.alpha = 0;
+        for (UIView *view in self.views) { // 为什么不直接使用set，保持传入views次序
+            if ([addSet containsObject:view]) {
+                if (self.fadeInOut) {
+                    view.alpha = 0;
+                }
+                [view layoutIfNeeded];
+                CGFloat x = 0;
+                CGFloat width = self.frame.size.width;
+                CGFloat height = view.frame.size.height;
+                view.frame = CGRectMake(x, y, width, height);
+                [self addSubview:view];
+                [self sendSubviewToBack:view];
+                y += height;
             }
-            [view layoutIfNeeded];
-            CGFloat x = 0;
-            CGFloat width = self.frame.size.width - 20;
-            CGFloat height = view.frame.size.height;
-            view.frame = CGRectMake(x, y, width, height);
-            [self addSubview:view];
-            [self sendSubviewToBack:view];
-            y += height;
         }
     };
     
@@ -82,7 +74,7 @@
         for (UIView *view in self.views) {
             view.alpha = 1;
             CGFloat x = 0;
-            CGFloat width = self.frame.size.width - 20;
+            CGFloat width = self.frame.size.width;
             CGFloat height = view.frame.size.height;
             view.frame = CGRectMake(x, y, width, height);
             y += height;
@@ -92,18 +84,18 @@
         
         // 将要移除的元素移到屏謩外
         CGFloat overY = y;
-        for (UIView *view in subSet) {
+        NSArray<UIView *> *sortedWillRemovedViews = [self sortedViews:[subSet allObjects]];
+        for (UIView *view in sortedWillRemovedViews) {
             if (self.fadeInOut) {
                 view.alpha = 0;
             }
             CGFloat x = 0;
-            CGFloat width = self.frame.size.width - 20;
+            CGFloat width = self.frame.size.width;
             CGFloat height = view.frame.size.height;
             view.frame = CGRectMake(x, overY, width, height);
             [self sendSubviewToBack:view];
             overY += height;
         }
-        
         return y;
     };
     
@@ -116,6 +108,14 @@
     _animation = animation;
     _previousViews = _views;
     return animation;
+}
+
+// 根据y排列views
+- (NSArray<UIView *> *)sortedViews:(NSArray<UIView *> *)views {
+    NSArray<UIView *> *sorted = [views sortedArrayUsingComparator:^NSComparisonResult(UIView * _Nonnull obj1, UIView * _Nonnull obj2) {
+        return obj1.frame.origin.y > obj2.frame.origin.y;
+    }];
+    return sorted;
 }
 
 - (void)reloadAnimated:(BOOL)animated {

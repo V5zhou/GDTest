@@ -25,6 +25,7 @@
             @{@"key": @"FreeStackViewController", @"desc": @"自由StackView"},
             @{@"key": @"MallocBlockViewController", @"desc": @"MallocBlock崩溃问题"},
             @{@"key": @"TransformTestViewController", @"desc": @"Transform扩展测试"},
+            @{@"key": @"ImagePerformanceTestVC", @"desc": @"图片性能测试"},
         ];
     }
     return _dataSource;

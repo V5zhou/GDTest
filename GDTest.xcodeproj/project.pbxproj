@@ -20,6 +20,7 @@
 		FC9CFA2926CA365200FF9BA1 /* TransformTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9CFA2826CA365200FF9BA1 /* TransformTestViewController.m */; };
 		FC9CFF0826CD0C7900FF9BA1 /* FlagOriginView.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9CFF0726CD0C7900FF9BA1 /* FlagOriginView.m */; };
 		FC9CFF0B26CD0D2100FF9BA1 /* UIBezierPathDraw.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9CFF0A26CD0D2100FF9BA1 /* UIBezierPathDraw.m */; };
+		FC9EF25E26D34694009971A2 /* ImagePerformanceTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = FC9EF25D26D34694009971A2 /* ImagePerformanceTestVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,8 @@
 		FC9CFF0726CD0C7900FF9BA1 /* FlagOriginView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FlagOriginView.m; sourceTree = "<group>"; };
 		FC9CFF0926CD0D2100FF9BA1 /* UIBezierPathDraw.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UIBezierPathDraw.h; sourceTree = "<group>"; };
 		FC9CFF0A26CD0D2100FF9BA1 /* UIBezierPathDraw.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIBezierPathDraw.m; sourceTree = "<group>"; };
+		FC9EF25C26D34694009971A2 /* ImagePerformanceTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImagePerformanceTestVC.h; sourceTree = "<group>"; };
+		FC9EF25D26D34694009971A2 /* ImagePerformanceTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImagePerformanceTestVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +92,7 @@
 				FC9CFA2526C60ED700FF9BA1 /* 自由StackView */,
 				FC9CFA2B26CA368600FF9BA1 /* block引发的崩溃 */,
 				FC9CFA2A26CA367500FF9BA1 /* Transform扩展测试 */,
+				FC9EF25F26D346AB009971A2 /* 图片性能测试 */,
 				FC9CEAF826C3D02E00FF9BA1 /* Main.storyboard */,
 				FC9CEAFB26C3D03000FF9BA1 /* Assets.xcassets */,
 				FC9CEAFD26C3D03000FF9BA1 /* LaunchScreen.storyboard */,
@@ -130,6 +134,15 @@
 				FC9CFA2326C608CD00FF9BA1 /* MallocBlockViewController.m */,
 			);
 			path = "block引发的崩溃";
+			sourceTree = "<group>";
+		};
+		FC9EF25F26D346AB009971A2 /* 图片性能测试 */ = {
+			isa = PBXGroup;
+			children = (
+				FC9EF25C26D34694009971A2 /* ImagePerformanceTestVC.h */,
+				FC9EF25D26D34694009971A2 /* ImagePerformanceTestVC.m */,
+			);
+			path = "图片性能测试";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,6 +216,7 @@
 			files = (
 				FC9CEAF726C3D02E00FF9BA1 /* ViewController.m in Sources */,
 				FC9CEB0A26C3D0D900FF9BA1 /* FreeStackViewController.m in Sources */,
+				FC9EF25E26D34694009971A2 /* ImagePerformanceTestVC.m in Sources */,
 				FC9CFF0826CD0C7900FF9BA1 /* FlagOriginView.m in Sources */,
 				FC9CFF0B26CD0D2100FF9BA1 /* UIBezierPathDraw.m in Sources */,
 				FC9CEAF126C3D02E00FF9BA1 /* AppDelegate.m in Sources */,
